@@ -1,4 +1,4 @@
-
+//test
 
 function GetCurrentCurrency(executionContext) {
     debugger;
