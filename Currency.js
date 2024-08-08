@@ -1,5 +1,4 @@
 //test
-
 function GetCurrentCurrency(executionContext) {
     debugger;
     var formContext = executionContext.getFormContext();
@@ -19,12 +18,6 @@ function GetCurrentCurrency(executionContext) {
     );
 
 }
-
-
-
-
-
-
 
 function GetCurrentpriceLsit(executionContext) {
     debugger;
