@@ -39,3 +39,26 @@ function HideShowGiftCustomer(executionContext){
     }
     
 }
+
+function WhenGiftCardIsUsed(executionContext){
+    debugger;
+    var formContext = executionContext.getFormContext();
+    if(LookupGiftCard.getValue() != null && LookupGiftCard.getValue() != undefined){
+        var GiftCard = LookupGiftCard.getValue();
+        var GiftCardId = GiftCard[0].id;
+        var GiftCardEntityType = GiftCard[0].entityType;
+        Xrm.WebApi.online.retrieveRecord(GiftCardEntityType, GiftCardId, "").then(
+            function success(result) {
+                var GCRemainingAmount = formContext.getAttribute("edm_remainingamount").getValue();
+                if(result["totalamount"] < GCRemainingAmount){
+                    var Remainig = GCRemainingAmount - result["totalamount"];
+                    formContext.getAttribute("edm_remainingamount").setValue(Remainig);
+                }
+            },
+            function (error) {
+                Xrm.Utility.alertDialog(error.message);
+            }
+        );
+
+    }
+}
